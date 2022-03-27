@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital clock</title>
+</head>
+
+<body>
+    <!-- <h1>hello world</h1>
+    <button type="button" onclick="document.getElementById('demo').innerHTML=Date()">click here to get time and date </button>
+    <p id='demo'>this is time and data</p> -->
+    <h1> Digital clock</h1>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<lottie-player class="lottie" src="https://assets4.lottiefiles.com/packages/lf20_OWkINS.json"  background="#E6CAC3"
+  speed="0.1"  style="width: 300px; height: 300px;"  loop  ></lottie-player>
+    
+    <div class="main-container">
+
+        <div class="time">
+            <p id="hh">hh</p>
+            <p>:</p>
+            <p id="mm">mm</p>
+            <p>:</p>
+            <p id="ss">ss</p>
+            <p id="ampm">AMpm</p>
+        </div>
+        <div class="date">
+            <p id="day">Day</p>
+            <p>,</p>
+            <p id="date">Date</p>
+            <p id="month">month</p>
+
+            <p id="year">year</p>
+        </div>
+
+    </div>
+    <script>
+        setInterval(() => {
+            let t = new Date();
+            document.getElementById("hh").innerHTML = t.getHours() % 12 < 10 ? "0" + t.getHours() % 12 : t.getHours() % 12;
+            document.getElementById("mm").innerHTML = t.getMinutes() < 10 ? "0" + t.getMinutes() : t.getMinutes();
+            document.getElementById("ss").innerHTML = t.getSeconds() < 10 ? "0" + t.getSeconds() : t.getSeconds();
+            if (t.getHours() < 12)
+                document.getElementById("ampm").innerHTML = "AM";
+            else
+                document.getElementById("ampm").innerHTML = "PM";
+
+
+            let day = t.getDay();
+            const wdays = new Map([
+                [0, "Sunday"],
+                [1, "Monday"],
+                [2, "Tuesday"],
+                [3, "Wednesday"],
+                [4, "Thursday"],
+                [5, "Friday"],
+                [6, "Saturday"],
+            ]);
+            let month = t.getMonth();
+            const ymonth = new Map([
+                [0, "jan"],
+                [1, "feb"],
+                [2, "march"],
+                [3, "april"],
+                [4, "may"],
+                [5, "june"],
+                [6, "july"],
+                [7, "august"],
+                [8, "sept"],
+                [9, "oct"],
+                [10, "nov"],
+                [11, "dec"],
+                
+            ]);
+            document.getElementById("day").innerHTML = wdays.get(day);
+            document.getElementById("date").innerHTML = t.getDate();
+            document.getElementById("month").innerHTML =ymonth.get(month);
+            document.getElementById("year").innerHTML = t.getFullYear();
+        }, 1000);
+    </script>
+    
+</body>
+
+</html>
